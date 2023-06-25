@@ -410,7 +410,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "LaserBoard4.1.kicad_pro",
+    "filename": "LaserBoard.kicad_pro",
     "version": 1
   },
   "net_settings": {
@@ -444,7 +444,7 @@
     "last_paths": {
       "gencad": "",
       "idf": "",
-      "netlist": "",
+      "netlist": "../../../../../Applications/KiCad/KiCad.app/Contents/Applications/",
       "specctra_dsn": "",
       "step": "",
       "vrml": ""

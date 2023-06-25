@@ -1,3 +1,5 @@
+# LaserBoard Pin Assignments
+
 ## Laser Source IO
 
 Most of the laserboar-r5's GPIO is spent on a semi-universal interface for common fiber laser sources. None of these
@@ -6,22 +8,22 @@ pins have strict hardware interface, although SYNC must be a PWM-capable pin.
 
 |IO Name/Function|Teensy 4.1 Pin Number|Register/Bit|
 |----------------|----------|-----------------------|
-|INTERLOCK       |6         |GPIO7/2                |
-|ENABLE          |8         |GPIO7/0                |
-|GUIDE_LASER     |9         |GPIO7/3                |
-|ALARM_0/LATCH   |10        |GPIO6/31               |
-|SYNC            |11        |GPIO6/30               |
-|MODULATE        |12        |GPIO6/12               |
-|ALARM_2         |26        |GPIO6/13               |
-|ALARM_1         |27        |GPIO7/16               |
+|INTERLOCK       |6         |GPIO7/10               |
+|ENABLE          |8         |GPIO7/16               |
+|GUIDE_LASER     |9         |GPIO7/11               |
+|ALARM_0/LATCH   |10        |GPIO7/0                |
+|SYNC            |11        |GPIO7/2                |
+|MODULATE        |12        |GPIO7/1                |
+|ALARM_2         |26        |GPIO6/30               |
+|ALARM_1         |27        |GPIO6/31               |
 |PWR_0           |33        |GPIO9/7                |
-|PWR_1/SER_DATA  |34        |GPIO9/7                |
-|PWR_2/SER_CLOCK |35        |GPIO9/7                |
-|PWR_3           |36        |GPIO9/7                |
-|PWR_4           |28        |GPIO9/7                |
-|PWR_5           |29        |GPIO9/7                |
-|PWR_6           |30        |GPIO9/7                |
-|PWR_7           |31        |GPIO9/7                |
+|PWR_1/SER_DATA  |34        |GPIO8/15               |
+|PWR_2/SER_CLOCK |35        |GPIO8/14               |
+|PWR_3           |36        |GPIO8/13               |
+|PWR_4           |28        |GPIO8/18               |
+|PWR_5           |29        |GPIO9/31               |
+|PWR_6           |30        |GPIO8/23               |
+|PWR_7           |31        |GPIO8/22               |
 
 INTERLOCK is an input pin for an enclosure interlock switch (active closed, labeled "Interlock" on PCB), which is
 debounced and level-shifted to 3.3v. This signal is also level-shifted to 5V and routed to the laser's interlock
@@ -95,3 +97,48 @@ and another 74AHC245PW Schmitt-trigger.
 |Axis 3 Home     |5         |**GPIO9/8**            |
 
 
+# Laser DB-25 Interface
+
+| DB-25 Pin | Raycus RFL-P30QS | JPT YDFLP-E-20 | RFL-P20MB | JPT  YDFLP-M6+ | Current Pinout |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Power LSB - D0 | Power LSB - D0 | Power LSB - D0 | Power LSB - D0 | PWR_0 |
+| 2 | D1 | D1 | D1 / Serial Input | D1 / Serial Input | PWR_1/SER_DATA | 
+| 3 | D2 | D2 | D2 / Serial Clock | D2 / Serial Clock | PWR_2/SER_CLOCK |
+| 4 | D3 | D3 | D3 | D3 | PWR_3 |
+| 5 | D4 | D4 | D4 | D4 | PWR_4 |
+| 6 | D5 | D5 | D5 | D5 | PWR_5 |
+| 7 | D6 | D6 | D6 | D6 | PWR_6 |
+| 8 | Power MSB - D7 | Power MSB - D7 | Power MSB - D7 | Power MSB - D7 | PWR_7 |
+| 9 | Obligate Raycus only | Power Latch | Obligate Raycus only | NC | Multiplexed to ALARM_O/LATCH |
+| 10 | GND | GND | GND | GND | GND |
+| 11 | Supply voltage alarm | GND | Abnormal state alarm | GND | Multiplexed to ALARM_O/LATCH |
+| 12 | alarm - always high | GND | alarm - always high | GND | NC |
+| 13 | GND | GND | Obligate Raycus only | GND | NC |
+| 14 | GND | GND | GND | GND | GND |
+| 15 | GND | GND | Obligate Raycus only | GND | NC |
+| 16 | System Alarm | System Alarm | System Alarm | System Alarm | ALARM_1 |
+| 17 | 5V Supply | NC | 5V Supply | NC | Jumper to 5V supply |
+| 18 | Emission Enable | Master Oscilator enable | Emission Enable | Master Oscilator enable | SAFE_ENABLE |
+| 19 | Emission Modulate | Emission Modulation | Emission Modulate | Emission Modulation | MODULATE |
+| 20 | Sync | Frequency Modulation | Sync | Frequency Modulation | SYNC |
+| 21 | Alarm | Temperature Alarm | Alarm | Temperature Alarm | ALARM_2 |
+| 22 | Guide Laser | Guide Laser | Guide Laser / Serial Enable | Guide Laser / Serial Enable | GUIDE_LASER |
+| 23 | Obligate Raycus only | Emergency Stop | Obligate Raycus only | NC | Jumper to INTERLOCK |
+| 24 | GND | NC | Obligate Raycus only | NC | NC |
+| 25 | GND | NC | Obligate Raycus only | NC | NC |
+
+# Jumper Table
+
+|Jumper Designators|Function|Default|Raycus State|JPT State| 
+|------------------|--------|-------|------------|---------|
+|JP1,3,5,7|Limit input 0...3 pull up|open|n.a.|n.a.|
+|JP2,4,6,8|Limit input 0...3 pull down|open|n.a.|n.a.|
+|JP9| Laser 5V supply| closed | closed | open|
+|JP10| Power Latch | open | open | closed |
+|JP11| Interlock/E-stop | closed | closed | closed |
+|JP12| USB Power | n.a. | n.a. | n.a. |
+|JP13| Alarm 0 |closed | closed | open |
+
+Only one of each pair of JP1/JP2, etc should be closed for proper limit operation. For programming and
+operation on USB power, JP12 must have pins 1 and 2 connected. For operation on external power, JP12 must
+have pins 2 and 3 connected.
