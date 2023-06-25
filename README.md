@@ -4,7 +4,8 @@
 
 LaserBoard is an open source controller for fiber laser marking systems, based around a Teensy 4.1 MCU board. LaserBoard
 provides a USB interface compatible with most low-cost fiber laser sources and XY-100-speaking galvanometer scanners, and
-supports 4 axes of step/direction motion control.
+supports 4 axes of step/direction motion control. LaserBoard is released under the terms of CERN-OHL-S; see LICENSE.txt,
+or [cern_ohl_s_v2.txt](https://ohwr.org/cern_ohl_s_v2.txt) for the full text.
 
 ## Q&A
 
