@@ -444,9 +444,9 @@
     "last_paths": {
       "gencad": "",
       "idf": "",
-      "netlist": "../../../../../Applications/KiCad/KiCad.app/Contents/Applications/",
+      "netlist": "LaserBoard.net",
       "specctra_dsn": "",
-      "step": "",
+      "step": "../exports/LaserBoard.step",
       "vrml": ""
     },
     "page_layout_descr_file": ""

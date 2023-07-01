@@ -1,5 +1,7 @@
 # PewPew LaserBoard
 
+REVISION 5 IS AS OF YET UNTESTED; PROCEED AT YOUR OWN RISK.
+
 ## What Is It?
 
 LaserBoard is an open source controller for fiber laser marking systems, based around a Teensy 4.1 MCU board. LaserBoard
@@ -7,12 +9,13 @@ provides a USB interface compatible with most low-cost fiber laser sources and X
 supports 4 axes of step/direction motion control. LaserBoard is released under the terms of CERN-OHL-S; see LICENSE.txt,
 or [cern_ohl_s_v2.txt](https://ohwr.org/cern_ohl_s_v2.txt) for the full text.
 
+
 ## Q&A
 
 ### Why?
 
-At the component level, laser marking hardware is remarkably cheap and high quality, and easy to interface with - with
-the exception of the control boards! Generally, they're bundled with a license for low-quality, proprietary software,
+At the component level, laser marking hardware is remarkably cheap and high quality, and easy to interface with. Sadly, laser
+marker control boards aren't! Generally, they're bundled with a license for low-quality, proprietary software,
 greatly inflating the price - a control board with 4 auxiliary axes (eg. JCZ DLC2-M4) cost about as much as a quality
 laser source and scanner ($2000!). 
 
@@ -42,6 +45,32 @@ LaserBoard is designed for use with [pewpew-laser](https://github.com/matthewSor
 appears to be a 404, it's because I'm ambivalent about running an open-source project and haven't figured out the
 liability issues related to releasing a complete system. Additionally, there's no GUI or even a standard toolpath
 generation script - although there might be some [Rhinoceros](https://www.rhino3d.com/) plugins in the works.
+
+### What Hardware Do I Need?
+
+The following table provides an estimate for a minimal laser marking system with a small Q-switched laser
+source, a 50x50 working envelope, a mid-market galvo scanner, and a manually-focused z axis.
+
+
+|Component         |Example Manufacturer and PN|Budgetary Price        |
+|------------------|--------------------------|-----------------------|
+|Control Board PCB | LaserBoard-Rev5          |$5-50                  |
+|Control Board Components     | Mouser | $90 |
+|30W Laser Source | Raycus - RFL-P30QS | $1000 |
+|Galvo Scanner | Sino-Galvo SG7110 | $400 |
+|F-theta Lens | HY-SL-1064-50-63 | $70 |
+|Beam Path | "Fiber Laser Beam Path" | $70 |
+|Stand | "Laser Fiber Lift Table" | $120 |
+|350W 24V Power Supply | Meanwell LRS-350-24 | $35 |
+|2x 15V 2A Power Supplies | CUI VGS-35C-15 | $28 |
+
+Coincidentally, this comes to around $1850 - around $900 cheaper than a plug-and-play commercial system with
+roughly the same grade of component. There does seem to be a large amount of price flexibility on laser sources
+from certain AliBaba vendors, to the extent that some JPT MOPA sources may be available for around 50% of list price.
+However, importing laser sources can pose significant customs issues. Note that this does not include key safety
+equipment, such as an enclosure, properly rated laser safety glasses, or an adequate ventilation system; not does
+it include wires, terminal blocks, etc.
+
 
 ## Revision History
 
