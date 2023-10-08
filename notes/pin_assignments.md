@@ -131,8 +131,14 @@ and another 74AHC245PW Schmitt-trigger.
 
 |Jumper Designators|Function|Default|Raycus State|JPT State| 
 |------------------|--------|-------|------------|---------|
-|JP1,3,5,7|Limit input 0...3 pull up|open|n.a.|n.a.|
-|JP2,4,6,8|Limit input 0...3 pull down|open|n.a.|n.a.|
+|JP14,15| Limit input 0 pull up|closed|n.a.|n.a|
+|JP1,2| Limit input 0 pull down|open|n.a.|n.a|
+|JP3,17| Limit input 1 pull up|closed|n.a.|n.a|
+|JP4,16| Limit input 1 pull down|open|n.a.|n.a|
+|JP5,19| Limit input 2 pull up|closed|n.a.|n.a|
+|JP6,18| Limit input 2 pull down|open|n.a.|n.a|
+|JP7,21| Limit input 3 pull up|closed|n.a.|n.a|
+|JP8,20| Limit input 3 pull down|open|n.a.|n.a|
 |JP9| Laser 5V supply| closed | closed | open|
 |JP10| Power Latch | open | open | closed |
 |JP11| Interlock/E-stop | closed | closed | closed |

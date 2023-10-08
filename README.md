@@ -17,7 +17,7 @@ or [cern_ohl_s_v2.txt](https://ohwr.org/cern_ohl_s_v2.txt) for the full text.
 At the component level, laser marking hardware is remarkably cheap and high quality, and easy to interface with. Sadly, laser
 marker control boards aren't! Generally, they're bundled with a license for low-quality, proprietary software,
 greatly inflating the price - a control board with 4 auxiliary axes (eg. JCZ DLC2-M4) cost about as much as a quality
-laser source and scanner ($2000!). 
+laser source and scanner ($2000!).
 
 Advanced features such as high-precision lens calibration, field stitching, active z-axes control etc. are also very
 difficult to implement, as the commercial controllers behave like a black-box and speak an undocumented host/controller
@@ -74,6 +74,22 @@ it include wires, terminal blocks, etc.
 
 ## Revision History
 
+### Rev 5a
+
+Revision 5a is a minor revision, primarily fixing screwups in Revision 5. The major changes are as follows:
+
+* Pulldown resistors were added to laser output pins, as turn-on behaviour was undefined.
+
+* Board footprint expanded to keep both DB connector faces in-plane and space
+was added between the connectors to accommodate cable's overmolded plastic.
+
+* C15 was switched from an SMD part to a PTH part to simplify soldering.
+
+* The pull-up/pull-down selection jumpers for inputs actually work with the
+debouncing network and don't require bodge wires.
+
+* The ethernet status LED is routed to the correct pins on the magjack.
+
 ### Rev 5
 
 Revision 5 is, in some ways, a simplification, and breaks pin mapping backwards compatibility. The major
@@ -81,7 +97,7 @@ changes are as follows:
 
 * The MCU board is changed from a Teensy 4.0 to a Teensy 4.1, in order to access more GPIO and remove a messy SMD
  header on the bottom of the board.
- 
+
 * Proper power supply input - small fiber lasers generally run on 24VDC supplies, and galvo scanners required -15/15V
  supplies, so there's always a readily available DC rail to generate a 5V rail for the teensy. The input protection
  circuit and switcher is essentially the same as published [here](https://blog.thea.codes/starfish-a-control-board-with-the-rp2040/),
@@ -98,7 +114,7 @@ changes are as follows:
 
 * Four limit pins are properly debounced with a low-pass filter and Schmitt-trigger and have (jumper) configurable
   pull-up/down resistors and indicator LEDs.
-  
+
 * The teensy 4.1 ethernet phy is broken out to an on-board magjack.
 
 
@@ -134,4 +150,3 @@ Revision one was ordered 2021/5/4, and had the following features:
 Revision one was used with a stepper-driven micrometer stage to get a proof-of-concept
 working for some surface-patterning applications, and was quickly replaced with rev 2 -
 seemingly a mostly cosmetic modification .
-
