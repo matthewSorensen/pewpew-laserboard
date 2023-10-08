@@ -1,7 +1,5 @@
 # PewPew LaserBoard
 
-REVISION 5 IS AS OF YET UNTESTED; PROCEED AT YOUR OWN RISK.
-
 ## What Is It?
 
 LaserBoard is an open source controller for fiber laser marking systems, based around a Teensy 4.1 MCU board. LaserBoard
